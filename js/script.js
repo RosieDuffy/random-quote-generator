@@ -66,21 +66,41 @@ function getRandomQuote() {
 }
 
 
+ /***
+ * Random Colour Function
+ * assigns random numbers for rgb selection
+ */
+
+ function  getRandomColor() {
+  
+  let r = Math.floor(Math.random() * 256);
+  let g = Math.floor(Math.random() * 256);
+  let b = Math.floor(Math.random() * 256);
+  return `rgb(${r},${g},${b})`;
+
+}
+
+
+
+
 /***
- * `printQuote` function
- * assigns getRandomQuote function to variable.
- * creates HTML string using template literal to insert random quote and source.
- * if statements to test if citation and year are available, if so they are added to quoteHTML string.
- * final <p> tag added to end of statement
- * quoteHTML is added to the innerHTML
+ * `printQuote` function 
 ***/
 
 
 function printQuote() {
   
+  /* declaring variables for randomColor and randomQuote */
+
+  const randomColor = getRandomColor();
   const randomQuote = getRandomQuote();
 
+  /* creates HTML string using template literal to insert random quote and source. */
+
   let quoteHTML = `<p class="quote">${randomQuote.quote}</p><p class ="source">${randomQuote.source}`;
+
+
+  /* if statements to test if citation, year and tag are available, if so they are added to quoteHTML string. */
 
   if (randomQuote.citation){
 
@@ -99,19 +119,25 @@ function printQuote() {
 
   }
 
+  /* final <p> tag added to end of statement */
+
   quoteHTML += '</p>';
+
+
+  /* quoteHTML is added to the innerHTML of 'quote-box' ID */
 
   document.getElementById('quote-box').innerHTML = quoteHTML; 
 
 
+  /* document body background rgb color is selected at random */
+
+  document.body.style.background = randomColor;
 }
 
 
 /***
  * click event listener for the print quote button
 ***/
-
-
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
 
