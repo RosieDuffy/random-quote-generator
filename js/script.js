@@ -3,13 +3,9 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
-/*** 
- * `quotes` array 
-***/
+/***
+ * 8 quotes from comedians stored in 'quotes' variable
+ */
 
 let quotes = [
   {quote: 'My girlfriend is absolutely beautiful. Body like a Greek statue...completely pale, no arms.', 
@@ -28,8 +24,9 @@ let quotes = [
 
   {quote: "As a kid I was made to walk the plank. We couldn't afford a dog.", 
    source:'Gary Delaney'},
+   
 
-  {quote: 'I saw a documentary on how ships are kept together. Riveting!', 
+  {quote: "I saw a documentary on how ships are kept together. Riveting!", 
    source:'Stewart Francis',
    citation: 'Twitter',
    year: 2006 },
@@ -44,6 +41,7 @@ let quotes = [
 
   {quote: "Here's a picture of me with REM. That's me in the corner.", 
    source: 'Milton Jones'}
+   
 ]
 
 
@@ -51,38 +49,56 @@ let quotes = [
 
 /***
  * `getRandomQuote` function
+ * returns a random number between 0-7 (amount of quotes available)
+ * uses random number to assign a random quote to randomObj variable
 ***/
 
 
 function getRandomQuote() {
-  // 1. Create a variable that generates a random number
-  // between zero and the last index in the `quotes` array
-  
+
   let randomNumber = Math.floor(Math.random() * 7);
-
-  
-
-  // 2. Use the random number variable and bracket notation 
-  // to grab a random object from the `quotes` array, and 
-  // store it in a variable
 
   let randomObj = quotes[randomNumber];
   
-
-  // 3. Return the variable storing the random quote object
-
   return randomObj;
 }
 
+
 /***
  * `printQuote` function
+ * assigns getRandomQuote function to variable.
+ * creates HTML string using template literal to insert random quote and source.
+ * if statements to test if citation and year are available, if so they are added to quoteHTML string.
+ * final <p> tag added to end of statement
+ * quoteHTML is added to the innerHTML
 ***/
 
+
+function printQuote() {
+  
+  const randomQuote = getRandomQuote();
+
+  let quoteHTML = `<p class="quote">${randomQuote.quote}</p><p class ="source">${randomQuote.source}`;
+
+  if (randomQuote.citation){
+
+    quoteHTML += `<span class="citation">${randomQuote.citation}</span>`;
+  }
+
+  if (randomQuote.year){
+
+    quoteHTML += `<span class="year">${randomQuote.year}</span>`;
+
+  }
+
+  quoteHTML += '</p>';
+
+  document.getElementById('quote-box').innerHTML = quoteHTML; 
+}
 
 
 /***
  * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
 ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
