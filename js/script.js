@@ -54,6 +54,25 @@ let quotes = [
 ***/
 
 
+function getRandomQuote() {
+  // 1. Create a variable that generates a random number
+  // between zero and the last index in the `quotes` array
+  
+  let randomNumber = Math.floor(Math.random() * 7);
+
+  
+
+  // 2. Use the random number variable and bracket notation 
+  // to grab a random object from the `quotes` array, and 
+  // store it in a variable
+
+  let randomObj = quotes[randomNumber];
+  
+
+  // 3. Return the variable storing the random quote object
+
+  return randomObj;
+}
 
 /***
  * `printQuote` function
