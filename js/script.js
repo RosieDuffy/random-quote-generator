@@ -23,7 +23,8 @@ let quotes = [
    year: 2015},
 
   {quote: "As a kid I was made to walk the plank. We couldn't afford a dog.", 
-   source:'Gary Delaney'},
+   source:'Gary Delaney',
+   tag: 'https://www.azquotes.com/quote/1089432'},
    
 
   {quote: "I saw a documentary on how ships are kept together. Riveting!", 
@@ -40,7 +41,8 @@ let quotes = [
    year: 2020},
 
   {quote: "Here's a picture of me with REM. That's me in the corner.", 
-   source: 'Milton Jones'}
+   source: 'Milton Jones',
+   tag: 'https://www.azquotes.com/quote/1296414'}
    
 ]
 
@@ -56,7 +58,7 @@ let quotes = [
 
 function getRandomQuote() {
 
-  let randomNumber = Math.floor(Math.random() * 7);
+  let randomNumber = Math.floor(Math.random() * 8);
 
   let randomObj = quotes[randomNumber];
   
@@ -91,9 +93,17 @@ function printQuote() {
 
   }
 
+  if (randomQuote.tag){
+
+    quoteHTML += `<span class="tag">  <a href="${randomQuote.tag}" target="_blank">AZ Quotes</a></span>`;
+
+  }
+
   quoteHTML += '</p>';
 
   document.getElementById('quote-box').innerHTML = quoteHTML; 
+
+
 }
 
 
@@ -101,4 +111,11 @@ function printQuote() {
  * click event listener for the print quote button
 ***/
 
+
+
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
+
+
+/* refresh quote on page every 4 seconds*/
+
+const delayedQuote = setInterval(printQuote, 4000);
